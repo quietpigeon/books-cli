@@ -14,14 +14,14 @@ To add a book, you can use a one-line command:
 book add --title <TITLE> --author <AUTHOR> --published-date <DATE> --edition <EDITION> --genre <GENRE>
 ```
 
-The field for `--published-date` should be in the format `DDMMYYYY`.
+The field for `--published-date` should be in the format `YYYY-MM-DD`.
 
 For books with more than one genre, you can add multiple genres using multiple `--genre` flags.
 
 For example,
 
 ```bash
-$ book add --title "Digital Fortress" --author "Dan Brown" --published-date 01011998 --edition 1 --genre fiction --genre mystery
+$ book add --title "Digital Fortress" --author "Dan Brown" --published-date 1998-01-01 --edition 1 --genre fiction --genre mystery
 Would you like to add a short description? [y/n]
 ```
 

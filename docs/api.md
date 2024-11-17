@@ -60,7 +60,7 @@ Example:
 * `id`: a unique identifier of the book
 * `title`: the title of the book
 * `author`: the author of the book
-* `published_date`: the date of publication of the book in the format (DDMMYYYY)
+* `published_date`: the date of publication of the book in the format (YYYY-MM-DD)
 * `edition`: the edition of the book (optional)
 * `genre`: the genre(s) the book belongs to
 * `description`: a description of the book (optional)
