@@ -66,17 +66,17 @@ var GetBooksRequest = func() (*http.Response, error) {
 	return resp, nil
 }
 
-func RemoveBookRequest(bookID int) (*http.Response, error) {
+var RemoveBookRequest = func(bookID int) (*http.Response, error) {
 	url := fmt.Sprintf("http://localhost:8080/v1/books/%d", bookID)
-	req, err := http.NewRequest("DELETE", url, nil)
+	req, err := http.NewRequest(http.MethodDelete, url, nil)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("failed to create request: %w", err)
 	}
 
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("failed to execute request: %w", err)
 	}
 
 	return resp, nil
