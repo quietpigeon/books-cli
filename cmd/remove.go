@@ -13,7 +13,7 @@ import (
 func removeCmd() *cobra.Command {
 	var removeCmd = &cobra.Command{
 		Use:   "remove <book_id>",
-		Short: "Remove a book by ID",
+		Short: "remove a book by ID",
 		Args:  cobra.ExactArgs(1),
 		Run:   removeBook,
 	}

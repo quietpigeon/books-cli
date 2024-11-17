@@ -7,7 +7,7 @@ import (
 )
 
 func main() {
-	api.LoadBooks()
+	api.InitializeDB()
 	r := gin.Default()
 	v1 := r.Group("/v1")
 	{
