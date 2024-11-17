@@ -7,5 +7,23 @@
     "Edition": 0,
     "Genre": null,
     "Description": ""
+  },
+  {
+    "ID": 2,
+    "Title": "foo",
+    "Author": "",
+    "PublishedDate": "",
+    "Edition": 0,
+    "Genre": [],
+    "Description": ""
+  },
+  {
+    "ID": 3,
+    "Title": "foo",
+    "Author": "",
+    "PublishedDate": "",
+    "Edition": 0,
+    "Genre": [],
+    "Description": ""
   }
 ]
