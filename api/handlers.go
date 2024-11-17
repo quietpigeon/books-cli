@@ -108,7 +108,7 @@ func HandleUpdateBookByID(c *gin.Context) {
 	c.JSON(http.StatusOK, updatedBook)
 }
 
-func HandleDeleteBooks(c *gin.Context) {
+func HandleDeleteBookByID(c *gin.Context) {
 	id, err := strconv.Atoi(c.Param("id"))
 	if err != nil {
 		c.JSON(http.StatusBadRequest, gin.H{"error": ErrInvalidBookID})

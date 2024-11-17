@@ -15,7 +15,7 @@ func main() {
 		v1.POST("/books", api.HandleAddBooks)
 		v1.GET("/books/:id", api.HandleGetBooksByID)
 		v1.PUT("/books/:id", api.HandleUpdateBookByID)
-		v1.DELETE("/books/:id")
+		v1.DELETE("/books/:id", api.HandleDeleteBookByID)
 	}
 	r.Run(":8080")
 }
