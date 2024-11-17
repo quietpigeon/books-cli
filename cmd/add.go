@@ -57,11 +57,20 @@ func addBook(cmd *cobra.Command, args []string) {
 		answer, _ := reader.ReadString('\n')
 		answer = strings.TrimSpace(answer)
 
+		// Get ID of the book added.
+		var responseBody struct {
+			ID int `json:"id"`
+		}
+		if err := json.NewDecoder(resp.Body).Decode(&responseBody); err != nil {
+			log.Fatal("Error decoding response:", err)
+		}
+
 		if answer == "y" || answer == "Y" {
 			fmt.Print("Enter description: ")
 			description, _ := reader.ReadString('\n')
 			description = strings.TrimSpace(description)
 			newBook.Description = description
+			newBook.ID = responseBody.ID
 			updateResp, err := UpdateBookRequest(newBook)
 			if err != nil {
 				log.Fatal(err)
