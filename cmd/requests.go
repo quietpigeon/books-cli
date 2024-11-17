@@ -50,16 +50,17 @@ var UpdateBookRequest = func(book api.Book) (*http.Response, error) {
 	return resp, nil
 }
 
-func GetBooksRequest() (*http.Response, error) {
-	req, err := http.NewRequest("GET", "http://localhost:8080/v1/books", nil)
+var GetBooksRequest = func() (*http.Response, error) {
+	client := &http.Client{}
+
+	req, err := http.NewRequest(http.MethodGet, "http://localhost:8080/v1/books", nil)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("failed to create request: %w", err)
 	}
 
-	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
-		return nil, err
+		return nil, fmt.Errorf("failed to execute request: %w", err)
 	}
 
 	return resp, nil
