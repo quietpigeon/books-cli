@@ -26,6 +26,10 @@ func LoadBooks() {
 			return
 		}
 	}
+	if len(data) == 0 {
+		books = []Book{}
+		return
+	}
 	err = json.Unmarshal(data, &books)
 	if err != nil {
 		panic(err)
