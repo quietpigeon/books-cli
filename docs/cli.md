@@ -69,16 +69,16 @@ book list --author "Dan Brown" --author "Roald Dahl" --genre fiction
 
 ## remove
 
-To remove a book or books from the system:
+To remove a book from the system:
 
 ```bash
-book remove <ID>...
+book remove <ID>
 ```
 
 For example,
 
 ```bash
-book remove 0 3 4
+book remove 0 
 ```
 
 ## update

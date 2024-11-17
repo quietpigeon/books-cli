@@ -12,7 +12,7 @@ func Cli() {
 		Use:   "books-cli",
 		Short: "CLI for Book Management",
 	}
-	cli.AddCommand(addCmd(), listCmd())
+	cli.AddCommand(addCmd(), listCmd(), removeCmd())
 
 	if err := cli.Execute(); err != nil {
 		fmt.Println(err)

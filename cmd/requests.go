@@ -51,13 +51,27 @@ func UpdateBookRequest(book api.Book) (*http.Response, error) {
 }
 
 func GetBooksRequest() (*http.Response, error) {
-	// Create the HTTP request
 	req, err := http.NewRequest("GET", "http://localhost:8080/v1/books", nil)
 	if err != nil {
 		return nil, err
 	}
 
-	// Send the request
+	client := &http.Client{}
+	resp, err := client.Do(req)
+	if err != nil {
+		return nil, err
+	}
+
+	return resp, nil
+}
+
+func RemoveBookRequest(bookID int) (*http.Response, error) {
+	url := fmt.Sprintf("http://localhost:8080/v1/books/%d", bookID)
+	req, err := http.NewRequest("DELETE", url, nil)
+	if err != nil {
+		return nil, err
+	}
+
 	client := &http.Client{}
 	resp, err := client.Do(req)
 	if err != nil {
