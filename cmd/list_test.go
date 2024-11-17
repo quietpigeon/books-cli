@@ -25,12 +25,10 @@ func TestListBooks(t *testing.T) {
 		}, nil
 	}
 
-	// Capture output
 	r, w, _ := os.Pipe()
 	oldStdout := os.Stdout
 	os.Stdout = w
 
-	// Restore original stdout
 	defer func() {
 		os.Stdout = oldStdout
 	}()
@@ -38,7 +36,6 @@ func TestListBooks(t *testing.T) {
 	cmd := listCmd()
 	listBooks(cmd, []string{})
 
-	// Close the writer and read the output
 	w.Close()
 	var buf bytes.Buffer
 	io.Copy(&buf, r)
