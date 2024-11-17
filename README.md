@@ -3,4 +3,9 @@
 This is a simple implementation of a book management software.
 
 * For the expected user experience, please check out the [user guide](docs/cli.md).
+<<<<<<< HEAD
 * The documentation of the REST API can be found [here](docs/api.md).
+=======
+* The documentation of the REST API can be found [here]().
+
+>>>>>>> b4c0c7d (docs: rest api design)

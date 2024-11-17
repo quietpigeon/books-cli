@@ -178,6 +178,10 @@ Example:
   {
     "id": 1,
     "name": "Dan Brown Thrillers",
+<<<<<<< HEAD
+=======
+    "description": "Collection of Dan Brown's thriller novels.",
+>>>>>>> b4c0c7d (docs: rest api design)
     "books": [1, 2, 3]
   }
 ]
@@ -187,7 +191,11 @@ Example:
 
 * `id`: a unique identifier for the collection
 * `name`: name of the collection
+<<<<<<< HEAD
 * `books`: IDs of books that belong to the collection
+=======
+* `description`: description of the collection
+>>>>>>> b4c0c7d (docs: rest api design)
 
 ---
 
@@ -229,7 +237,12 @@ Example:
 
 ```json
 {
+<<<<<<< HEAD
   "name": "Robert Langdon Series"
+=======
+  "name": "Robert Langdon Series",
+  "description": "Books featuring Robert Langdon."
+>>>>>>> b4c0c7d (docs: rest api design)
 }
 ```
 
@@ -250,7 +263,11 @@ See fields from `GET /v1/collections`.
 
 ```json
 {
+<<<<<<< HEAD
   "name": "A better name."
+=======
+  "description": "Updated description."
+>>>>>>> b4c0c7d (docs: rest api design)
 }
 ```
 
