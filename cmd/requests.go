@@ -8,7 +8,7 @@ import (
 	"net/http"
 )
 
-func AddBookRequest(newBook api.Book) (*http.Response, error) {
+var AddBookRequest = func(newBook api.Book) (*http.Response, error) {
 	data, err := json.Marshal(newBook)
 	if err != nil {
 		return nil, err
@@ -28,7 +28,7 @@ func AddBookRequest(newBook api.Book) (*http.Response, error) {
 	return resp, nil
 }
 
-func UpdateBookRequest(book api.Book) (*http.Response, error) {
+var UpdateBookRequest = func(book api.Book) (*http.Response, error) {
 	jsonData, err := json.Marshal(book)
 	if err != nil {
 		return nil, err

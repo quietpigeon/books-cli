@@ -5,6 +5,7 @@ import (
 	"bufio"
 	"encoding/json"
 	"fmt"
+	"io"
 	"log"
 	"net/http"
 	"os"
@@ -17,7 +18,9 @@ func addCmd() *cobra.Command {
 	var add = &cobra.Command{
 		Use:   "add",
 		Short: "add a new book",
-		Run:   addBook,
+		Run: func(cmd *cobra.Command, args []string) {
+			addBook(cmd, args, os.Stdin)
+		},
 	}
 	add.Flags().StringP("title", "t", "", "Title of the book")
 	add.Flags().StringP("author", "a", "", "Author of the book")
@@ -28,7 +31,7 @@ func addCmd() *cobra.Command {
 	return add
 }
 
-func addBook(cmd *cobra.Command, args []string) {
+func addBook(cmd *cobra.Command, _ []string, input io.Reader) {
 	title, _ := cmd.Flags().GetString("title")
 	author, _ := cmd.Flags().GetString("author")
 	publishedDate, _ := cmd.Flags().GetString("published-date")
@@ -52,7 +55,7 @@ func addBook(cmd *cobra.Command, args []string) {
 		fmt.Println("Book added successfully!")
 
 		// Ask for book description.
-		reader := bufio.NewReader(os.Stdin)
+		reader := bufio.NewReader(input)
 		fmt.Print("Would you like to add a short description? [y/n] ")
 		answer, _ := reader.ReadString('\n')
 		answer = strings.TrimSpace(answer)
@@ -81,7 +84,6 @@ func addBook(cmd *cobra.Command, args []string) {
 				fmt.Println("Error adding description:", updateResp.Status)
 			}
 		}
-
 	} else {
 		var apiError struct {
 			Error string `json:"error"`
