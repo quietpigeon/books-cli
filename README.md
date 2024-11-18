@@ -43,7 +43,7 @@ This is a simple implementation of a book management software.
 
 ## Usage
 
-There are two binaries for this project, `book` and `server`. 
+There are two binaries for this project, `book` and `server`.
 
 To build the binaries:
 

@@ -3,7 +3,6 @@ package api_test
 import (
 	"books-cli/api"
 	"bytes"
-	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -113,9 +112,10 @@ func TestHandleUpdateBookByID(t *testing.T) {
 	require.NoError(t, err)
 	defer mockDB.Close()
 
+	// Simulate book exists.
 	mock.ExpectQuery("SELECT EXISTS\\(SELECT 1 FROM books WHERE id = \\?\\)").
 		WithArgs(1).
-		WillReturnRows(sqlmock.NewRows([]string{"exists"}).AddRow(true)) // Simulate book exists
+		WillReturnRows(sqlmock.NewRows([]string{"exists"}).AddRow(true))
 
 	mock.ExpectExec("UPDATE books SET title=\\?, author=\\?, published_date=\\?, edition=\\?, genre=\\?, description=\\? WHERE id=\\?").
 		WithArgs("Updated Title", "Updated Author", "2024-12-01", 2, "Fiction,Drama", "An updated description", 1).
@@ -134,14 +134,11 @@ func TestHandleUpdateBookByID(t *testing.T) {
 		"genre": ["Fiction", "Drama"],
 		"description": "An updated description"
 	}`
-	fmt.Println("Request Body:", body) // Debugging
 	req, _ := http.NewRequest(http.MethodPut, "/books/1", bytes.NewBufferString(body))
 	req.Header.Set("Content-Type", "application/json")
 
 	w := httptest.NewRecorder()
 	router.ServeHTTP(w, req)
-
-	fmt.Println("Response Body:", w.Body.String())
 
 	assert.Equal(t, http.StatusOK, w.Code)
 	assert.JSONEq(t, `{
@@ -175,8 +172,6 @@ func TestHandleDeleteBookByID(t *testing.T) {
 
 	w := httptest.NewRecorder()
 	router.ServeHTTP(w, req)
-
-	fmt.Println("Response Status:", w.Code)
 
 	assert.Equal(t, http.StatusOK, w.Code)
 

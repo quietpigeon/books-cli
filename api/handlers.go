@@ -60,14 +60,14 @@ func HandleAddBooks(c *gin.Context, db *sql.DB) {
 	)
 	if err != nil {
 		fmt.Printf("Exec error: %v\n", err)
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to add book"})
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to add book"})
 		return
 	}
 
 	// Get the last inserted ID
 	id, err := result.LastInsertId()
 	if err != nil {
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to retrieve inserted book ID"})
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to retrieve inserted book ID"})
 		return
 	}
 
@@ -109,7 +109,7 @@ func HandleUpdateBookByID(c *gin.Context, db *sql.DB) {
 	err = db.QueryRow("SELECT EXISTS(SELECT 1 FROM books WHERE id = ?)", id).Scan(&exists)
 	if err != nil {
 		log.Printf("Error checking for book existence: %v", err)
-		c.JSON(http.StatusInternalServerError, gin.H{"error": "Failed to check book existence"})
+		c.JSON(http.StatusInternalServerError, gin.H{"error": "failed to check book existence"})
 		return
 	}
 	if !exists {
