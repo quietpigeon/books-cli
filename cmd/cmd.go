@@ -9,8 +9,8 @@ import (
 
 func Cli() {
 	var cli = &cobra.Command{
-		Use:   "books-cli",
-		Short: "CLI for Book Management",
+		Use:   "book",
+		Short: "cli for bool management",
 	}
 	cli.AddCommand(addCmd(), listCmd(), removeCmd(), updateCmd())
 
