@@ -2,6 +2,7 @@ package api
 
 import (
 	"database/sql"
+	"fmt"
 	"log"
 	"strings"
 
@@ -9,18 +10,18 @@ import (
 )
 
 type Book struct {
-	ID            int
-	Title         string
-	Author        string
-	PublishedDate string
-	Edition       int
-	Genre         []string
-	Description   string
+	ID            int      `json:"id"`
+	Title         string   `json:"title"`
+	Author        string   `json:"author"`
+	PublishedDate string   `json:"published_date"`
+	Edition       int      `json:"edition"`
+	Genre         []string `json:"genre"`
+	Description   string   `json:"description"`
 }
 
 var db *sql.DB
 
-func InitializeDB() {
+func InitializeDB() (*sql.DB, error) {
 	var err error
 	db, err = sql.Open("sqlite3", "./db/books.db")
 	if err != nil {
@@ -33,17 +34,18 @@ func InitializeDB() {
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
 		title TEXT NOT NULL,
 		author TEXT NOT NULL,
-		published_date   
- TEXT,
+		published_date TEXT,
 		edition TEXT,
 		genre TEXT, -- Store genres as comma-separated string
 		description TEXT
 	);
 	`
-	_, err = db.Exec(createTableSQL)
-	if err != nil {
-		log.Fatal(err)
+	if _, err = db.Exec(createTableSQL); err != nil {
+		db.Close()
+		return nil, fmt.Errorf("failed to create books table: %w", err)
 	}
+
+	return db, nil
 }
 
 func SaveBook(book *Book) error {
@@ -63,14 +65,19 @@ func SaveBook(book *Book) error {
 	return nil
 }
 
-func updateBook(book *Book) error {
-	genre := strings.Join(book.Genre, ",")
-	_, err := db.Exec("UPDATE books SET title=?, author=?, published_date=?, edition=?, genre=?, description=? WHERE id=?",
-		book.Title, book.Author, book.PublishedDate, book.Edition, genre, book.Description, book.ID)
+func updateBook(db *sql.DB, book *Book) error {
+	log.Printf("Updating book: %+v", book)
+	_, err := db.Exec(
+		"UPDATE books SET title=?, author=?, published_date=?, edition=?, genre=?, description=? WHERE id=?",
+		book.Title, book.Author, book.PublishedDate, book.Edition, strings.Join(book.Genre, ","), book.Description, book.ID,
+	)
 	return err
 }
 
-func deleteBook(bookID int) error {
+func deleteBook(db *sql.DB, bookID int) error {
 	_, err := db.Exec("DELETE FROM books WHERE id=?", bookID)
+	if err != nil {
+		log.Printf("Error executing delete query: %v", err)
+	}
 	return err
 }
