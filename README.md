@@ -2,18 +2,78 @@
 
 ```txt
 .
+├── Makefile
 ├── README.md
-├── data
-│   ├── README.md
-│   ├── books.json
-│   └── collections.json
-└── docs
-    ├── api.md
-    └── cli.md
+├── api
+│   ├── books.go
+│   ├── errs.go
+│   ├── handlers.go
+│   └── handlers_test.go
+├── bin
+│   ├── book
+│   └── server
+├── book
+│   └── main.go
+├── cmd
+│   ├── add.go
+│   ├── add_test.go
+│   ├── cmd.go
+│   ├── list.go
+│   ├── list_test.go
+│   ├── remove.go
+│   ├── remove_test.go
+│   ├── requests.go
+│   ├── update.go
+│   └── update_test.go
+├── db
+│   └── books.db
+├── docs
+│   ├── api.md
+│   └── cli.md
+├── go.mod
+├── go.sum
+└── server
+    └── main.go
 ```
 
 This is a simple implementation of a book management software.
 
 * For the expected user experience, please check out the [user guide](docs/cli.md).
 * The documentation of the REST API can be found [here](docs/api.md).
-* To learn more about the json format, please see [here](data/README.md).
+
+## Usage
+
+There are two binaries for this project, `book` and `server`. 
+
+To build the binaries:
+
+```bash
+make cli
+make server
+```
+
+To run the server:
+
+```bash
+make run-server
+```
+
+To install the cli to your path:
+
+ ```bash
+ make install-cli
+ ```
+
+ (If it doesn't work, please run `go env gobin` and export the path in your shell.)
+
+ (If it still doesn't work, replace `book` with `go run book/main.go` for all of the commands.)
+
+## Summary
+
+_Due to the time constraints, I was only able to implement the APIs for books but not for collections. With the current implementation, you should be able to add, remove, update, and list the books stored in the database._
+
+Both the CLI and REST API designs are straightforward. I first made a draft for both of the design docs, and refined them as I implemented the logics.
+
+Coding was slightly challenging because I am not very familiar with Golang and its ecosystem. However, it was a fun process because I got to learn more about the language and libraries. I had some experience in writing CLI tools, so the implementation for the CLI went smoothly. For the APIs, it took some time for me to look up documentations and compare different web frameworks before implementing them.
+
+For testing, I was only able to write some basic unit tests for some of the more important logics. If I had more time, I would go over more edge cases and improve error handling, such as having custom error types.

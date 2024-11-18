@@ -7,5 +7,5 @@ server:
 run-server: 
 	./bin/server
 
-run-cli:
+install-cli:
 	go install ./book
