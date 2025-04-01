@@ -4,7 +4,7 @@ There are two components in REST API, which are:
 
 * `/books`
 
-* `/collections`
+* `/collections` (wip)
 
 ---
 
