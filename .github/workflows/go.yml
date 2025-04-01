@@ -24,5 +24,8 @@ jobs:
     - name: Build
       run: go build -v ./...
 
+    - name: Run server
+      run: go run server/main.go & 
+
     - name: Test
       run: go test -v ./...
