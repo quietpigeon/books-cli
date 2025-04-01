@@ -4,6 +4,9 @@ cli:
 server:
 	go build -o bin/server server/main.go
 
+tests:
+	go test ./...
+
 run-server: 
 	./bin/server
 

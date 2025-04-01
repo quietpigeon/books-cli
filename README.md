@@ -52,6 +52,14 @@ make cli
 make server
 ```
 
+To run all unit tests:
+
+```bash
+make tests
+```
+```
+```
+
 To run the server:
 
 ```bash
@@ -68,12 +76,3 @@ To install the cli to your path:
 
  (If it still doesn't work, replace `book` with `go run book/main.go` for all of the commands.)
 
-## Summary
-
-_Due to the time constraints, I was only able to implement the APIs for books but not for collections. With the current implementation, you should be able to add, remove, update, and list the books stored in the database._
-
-Both the CLI and REST API designs are straightforward. I first made a draft for both of the design docs, and refined them as I implemented the logics.
-
-Coding was slightly challenging because I am not very familiar with Golang and its ecosystem. However, it was a fun process because I got to learn more about the language and libraries. I had some experience in writing CLI tools, so the implementation for the CLI went smoothly. For the APIs, it took some time for me to look up documentations and compare different web frameworks before implementing them.
-
-For testing, I was only able to write some basic unit tests for some of the more important logics. If I had more time, I would go over more edge cases and improve error handling, such as having custom error types.

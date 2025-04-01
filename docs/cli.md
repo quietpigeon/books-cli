@@ -34,38 +34,10 @@ After a book is added, the system will assign an ID to the book. You can check t
 To list all of the books in the system:
 
 ```bash
-book list --all
+book list
 ```
 
-This command will list out the necessary fields, i.e. `id`, `title`, `author`, `collection`
-
-To list out all of the fields, simply add the `--verbose` flag to the command:
-
-```bash
-book list --all --verbose
-```
-
-To list the books with specific author(s) or genre(s):
-
-```bash
-book list --author <AUTHOR>...
-```
-
-```bash
-book list --genre <GENRE>...
-```
-
-You can also combine the two:
-
-```bash
-book list --author <AUTHOR> --genre <GENRE>
-```
-
-For example,
-
-```bash
-book list --author "Dan Brown" --author "Roald Dahl" --genre fiction
-```
+This command will list out all books stored in the database, along with all of the fields.
 
 ## remove
 
@@ -95,24 +67,3 @@ For example, if you would like to update the title of the book with an ID of 0:
 book update 0 --title "Digital Fortresses"
 ```
 
-## collection
-
-To create a new collection:
-
-```bash
-book collection create <COLLECTION_NAME>
-```
-
-To add a book or multiple books to a collection:
-
-```bash
-book collection <COLLECTION_ID> add <BOOK_ID>...
-```
-
-For example:
-
-```bash
-$ book collection create "Favourites"
-The collection "Favourites" has been created with ID 0.
-$ book collection 0 add 2 3
-```
