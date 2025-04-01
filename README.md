@@ -57,8 +57,6 @@ To run all unit tests:
 ```bash
 make tests
 ```
-```
-```
 
 To run the server:
 
